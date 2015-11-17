@@ -2,12 +2,24 @@
 
 import bottle
 import datetime
+import json
 import os
 import pytz
+import random
+
+
+# Preserve order of shuffled spoo images by saving them to a file
+try:
+    images = json.loads(open('order.json').read())
+except FileNotFoundError:
+    images = os.listdir('spoos')
+    random.shuffle(images)
+    open('order.json', 'w').write(json.dumps(images))
+
 
 @bottle.route('/')
 def index():
-    images = os.listdir('spoos')
+    """Serve one spoo image a day, making sure the day is determined using EST"""
     utc = pytz.timezone('UTC')
     eastern = pytz.timezone('US/Eastern')
     now = utc.localize(datetime.datetime.utcnow()).astimezone(eastern)
@@ -17,7 +29,7 @@ def index():
 
 @bottle.route('/spoos/<filename>')
 def static(filename):
-    print('Serving {}'.format(filename))
+    """Serve static files"""
     return bottle.static_file(filename, root='spoos')
 
-bottle.run(host='localhost', port=8080)
+bottle.run(host='0.0.0.0', port=80)
