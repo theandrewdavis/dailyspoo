@@ -32,4 +32,4 @@ def static(filename):
     """Serve static files"""
     return bottle.static_file(filename, root='spoos')
 
-bottle.run(host='0.0.0.0', port=80)
+bottle.run(host='0.0.0.0', port=80, server='cherrypy')
