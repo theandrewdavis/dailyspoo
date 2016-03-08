@@ -11,8 +11,8 @@ cd dailyspoo
 virtualenv -p python3 venv
 ./venv/bin/pip install -r requirements.txt
 mkdir spoos
-chmod a+r spoos/*
 # copy pictures into spoos
+chmod a+r spoos/*
 sudo nohup ./venv/bin/python app.py &
 
 sudo cp nginx.conf /etc/ngnix/sites-enabled/dailyspoos
