@@ -13,7 +13,8 @@ virtualenv -p python3 venv
 mkdir spoos
 # copy pictures into spoos
 chmod a+r spoos/*
-sudo nohup ./venv/bin/python app.py &
+nohup ./venv/bin/python `pwd`/app.py &
+# I like to see the full path of app.py in `ps aux`, thus the `pwd`
 
 sudo cp nginx.conf /etc/ngnix/sites-enabled/dailyspoos
 sudo service nginx restart
