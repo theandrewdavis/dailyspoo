@@ -27,9 +27,4 @@ def index():
     index = (now - epoch).days % len(images)
     return bottle.template('index.html', img=os.path.join('spoos', images[index]))
 
-@bottle.route('/spoos/<filename>')
-def static(filename):
-    """Serve static files"""
-    return bottle.static_file(filename, root='spoos')
-
-bottle.run(host='0.0.0.0', port=80, server='cherrypy')
+bottle.run(host='0.0.0.0', port=8001, server='cherrypy')
