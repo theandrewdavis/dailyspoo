@@ -17,7 +17,7 @@ chmod a+r spoos/*
 nohup ./venv/bin/python `pwd`/app.py &
 # I like to see the full path of app.py in `ps aux`, thus the `pwd`
 
-sudo rm -f /etc/ngnix/sites-enabled/default
-sudo cp nginx.conf /etc/ngnix/sites-enabled/dailyspoos
+sudo rm -f /etc/nginx/sites-enabled/default
+sudo cp nginx.conf /etc/nginx/sites-enabled/dailyspoos
 sudo service nginx restart
 ```
