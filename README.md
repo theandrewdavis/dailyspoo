@@ -2,8 +2,9 @@ A simple webserver that shows a new picture of our sadly departed [spoodle](http
 
 To install on Ubuntu 18.04 LTS:
 ```
+sudo add-apt-repository ppa:certbot/certbot
 sudo apt-get update
-sudo apt-get install -y python3-venv nginx
+sudo apt-get install -y python3-venv nginx certbot
 
 git clone https://github.com/theandrewdavis/dailyspoo.git
 cd dailyspoo
@@ -13,10 +14,14 @@ mkdir spoos
 chmod a+rx spoos
 # copy pictures into spoos
 chmod a+r spoos/*
-nohup ./venv/bin/python `pwd`/app.py &
-# I like to see the full path of app.py in `ps aux`, thus the `pwd`
+nohup ./venv/bin/python app.py &
 
 sudo rm -f /etc/nginx/sites-enabled/default
-sudo cp nginx.conf /etc/nginx/sites-enabled/dailyspoos
+sudo cp nginx-http.conf /etc/nginx/sites-enabled/dailyspoos
+sudo service nginx restart
+
+sudo certbot --nginx certonly
+echo "renew_hook=service ngnix restart" | sudo tee -a /etc/letsencrypt/renewal/dailyspoo.com.conf
+sudo cp nginx-https.conf /etc/nginx/sites-enabled/dailyspoos
 sudo service nginx restart
 ```
