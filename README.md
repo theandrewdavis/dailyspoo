@@ -4,7 +4,7 @@ To install on Ubuntu 18.04 LTS:
 ```
 sudo add-apt-repository ppa:certbot/certbot
 sudo apt-get update
-sudo apt-get install -y python3-venv nginx certbot
+sudo apt-get install -y python3-venv nginx certbot python-certbot-nginx
 
 git clone https://github.com/theandrewdavis/dailyspoo.git
 cd dailyspoo
@@ -16,10 +16,12 @@ chmod a+rx spoos
 chmod a+r spoos/*
 nohup ./venv/bin/python app.py &
 
+# Set up empty site for certbot
 sudo rm -f /etc/nginx/sites-enabled/default
 sudo cp nginx-http.conf /etc/nginx/sites-enabled/dailyspoos
 sudo service nginx restart
 
+# Set up https site
 sudo certbot --nginx certonly
 echo "renew_hook=service ngnix restart" | sudo tee -a /etc/letsencrypt/renewal/dailyspoo.com.conf
 sudo cp nginx-https.conf /etc/nginx/sites-enabled/dailyspoos
