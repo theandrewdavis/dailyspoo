@@ -23,7 +23,7 @@ sudo service nginx restart
 
 # Set up https site
 sudo certbot --nginx certonly
-echo "renew_hook=service ngnix restart" | sudo tee -a /etc/letsencrypt/renewal/dailyspoo.com.conf
+echo "renew_hook=sudo service ngnix restart" | sudo tee -a /etc/letsencrypt/renewal/dailyspoo.com.conf
 sudo cp nginx-https.conf /etc/nginx/sites-enabled/dailyspoos
 sudo service nginx restart
 ```
