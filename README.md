@@ -2,7 +2,6 @@ A simple webserver that shows a new picture of our sadly departed [spoodle](http
 
 To install on Ubuntu 18.04 LTS:
 ```
-sudo add-apt-repository ppa:certbot/certbot
 sudo apt-get update
 sudo apt-get install -y python3-venv nginx certbot python-certbot-nginx
 
