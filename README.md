@@ -1,9 +1,9 @@
 A simple webserver that shows a new picture of our sadly departed [spoodle](https://en.wikipedia.org/wiki/Cockapoo) every day, made as a gift for my fiancée.
 
-To install on Ubuntu 18.04 LTS:
+To install on Ubuntu 20.04 LTS:
 ```
 sudo apt-get update
-sudo apt-get install -y python3-venv nginx certbot python-certbot-nginx
+sudo apt-get install -y python3-venv nginx certbot python3-certbot-nginx
 
 git clone https://github.com/theandrewdavis/dailyspoo.git
 cd dailyspoo
