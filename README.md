@@ -9,10 +9,11 @@ git clone https://github.com/theandrewdavis/dailyspoo.git
 cd dailyspoo
 python3 -m venv venv
 ./venv/bin/pip install -r requirements.txt
+chmod o+x ~
 mkdir spoos
-chmod a+rx spoos
+chmod o+rx spoos
 # copy pictures into spoos
-chmod a+r spoos/*
+chmod o+r spoos/*
 nohup ./venv/bin/python app.py &
 
 # Set up empty site for certbot
